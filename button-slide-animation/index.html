@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Slide Animation Example</title>
+
+    <style>
+      html,
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #333;
+        font-size: 1.5rem;
+      }
+
+      .button {
+        --color: #00a2ff;
+        border: 3px solid var(--color);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.325rem;
+        background: inherit;
+        font-size: inherit;
+
+        position: relative;
+        isolation: isolate;
+      }
+
+      .button::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        background-color: var(--color);
+        inset: 0;
+
+        scale: 0 1;
+        transform-origin: right;
+        transition: scale 450ms, border-color 50ms, background-color 50ms;
+      }
+
+      .button:hover::after,
+      .button:focus-visible::after {
+        scale: 1 1;
+        transform-origin: left;
+      }
+
+      .button:active:hover {
+        --active-color: #007acc;
+        border-color: var(--active-color);
+      }
+
+      .button:active:hover:after {
+        background-color: var(--active-color);
+        scale: 1 1;
+        transform-origin: left;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="button">Button Slide Animation</button>
+  </body>
+</html>
